@@ -1,0 +1,58 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include "funcoes.hpp"
+
+using namespace std;
+
+int main() {
+  vector<Carro> carros;
+  int opcao = 0;
+
+  carros = obter_dados_do_arquivo();
+
+  do{
+    system("clear");
+    banner("CONCESSIONARIA DO IFPB");
+    cout << "1-Cadastrar Carro\n2-Comprar Carro\n3-Pesquisar\n4-Listar Carros\n5-Alterar Estoque\n6-Estatisticas da Concessionaria\n0-Sair\n"<< endl;
+    cout << "Informe a opção desejada: ";
+    cin >> opcao;
+    cin.ignore();
+    if(opcao == 1){
+      system("clear");
+      banner("CADASTRAMENTO DE CARROS");
+      cadastrar_novos_carros(carros);
+      salvar_dados_no_arquivo(carros);
+      
+    }else if(opcao == 4){
+      system("clear");
+      banner("LISTA DE CARROS");
+      listar_carros(carros);
+      
+    }else if(opcao == 3){
+      system("clear");
+      banner("BUSCA DE CARROS");
+      pesquisar_pelo_modelo(carros);
+
+    }else if(opcao == 2){
+      system("clear");
+      banner("COMPRA DE CARROS");
+      comprar_carros(carros);
+      
+    }else if(opcao ==5){
+      system("clear");
+      banner("ALTERAÇÃO DE ESTOQUE");
+      alterar_estoque(carros);
+      
+    }else if(opcao ==6){
+      system("clear");
+      banner("ESTATISTICAS DA CONCESSIONARIA");
+      estatisticas(carros);
+    }
+  }while (opcao != 0);
+  system("clear");
+  cout << "Programa finalizado!\n";
+}
+    
